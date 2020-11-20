@@ -30,11 +30,11 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 // routing
-// const defaultRoutes = require("./routes/")
+const defaultRoutes = require("./routes/default/defaultRoutes");
 
-app.get("/", ( req, res) => {
-    res.send("Hello World!!!")
-})
+// routes
+app.use("/", defaultRoutes);
+
 
 // Error handling
 app.use(( req, res, next) => {
