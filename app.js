@@ -31,9 +31,11 @@ app.set('view engine', 'ejs');
 
 // routing
 const defaultRoutes = require("./routes/default/defaultRoutes");
+const auth = require("./routes/auth/authRoutes");
 
 // routes
 app.use("/", defaultRoutes);
+app.use("/auth", auth)
 
 
 // Error handling
