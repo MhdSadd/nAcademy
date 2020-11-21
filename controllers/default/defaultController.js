@@ -14,5 +14,13 @@ module.exports = {
     course: (req, res) => {
         const pagetitle = "Courses";
         res.render("defaultViews/course", {pagetitle});
-    }
+    },
+    consulting: (req, res) => {
+        const pagetitle = "Consulting";
+        res.render("defaultViews/consulting", {pagetitle});
+    },
+    corporate: (req, res) => {
+        const pagetitle = "Corporate";
+        res.render("defaultViews/corporate", {pagetitle})
+    },
 }

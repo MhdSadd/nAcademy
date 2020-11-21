@@ -3,7 +3,7 @@ const express = require("express");
 const router = express.Router();
 
 // destructuring controllers
-const { index, about, contact, course } = require("../../controllers/default/defaultController")
+const { index, about, contact, course, consulting, corporate } = require("../../controllers/default/defaultController")
 
 // home route
 router.get("/", index);
@@ -16,5 +16,11 @@ router.get("/contact", contact);
 
 // courses route 
 router.get("/course", course);
+
+// courses route
+router.get("/consulting", consulting);
+
+// corporate route
+router.get("/corporate", corporate);
 
 module.exports = router;
