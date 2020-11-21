@@ -38,5 +38,17 @@ module.exports = {
     course_details: (req, res) => {
         const pagetitle = "Course Details";
         res.render("defaultViews/course-details", {pagetitle});
-    }
+    },
+    course_video: (req, res) => {
+        const pagetitle = "Course Video";
+        res.render("defaultViews/course-video", {pagetitle});
+    },
+    education: (req, res) => {
+        const pagetitle = "Education";
+        res.render("defaultViews/education", {pagetitle});
+    },
+    instructor_details: (req , res) => {
+        const pagetitle = "Instructor Details";
+        res.render("defaultViews/instructor-details", {pagetitle});
+    },
 }
