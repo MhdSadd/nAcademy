@@ -23,4 +23,20 @@ module.exports = {
         const pagetitle = "Corporate";
         res.render("defaultViews/corporate", {pagetitle})
     },
+    cart: (req, res) => {
+        const pagetitle = "Cart";
+        res.render("defaultViews/cart", {pagetitle});
+    },
+    business: (req, res) => {
+        const pagetitle = "Business";
+        res.render("defaultViews/business", {pagetitle});
+    },
+    banking: (req, res) => {
+        const pagetitle = "Banking";
+        res.render("defaultViews/banking", {pagetitle});
+    },
+    course_details: (req, res) => {
+        const pagetitle = "Course Details";
+        res.render("defaultViews/course-details", {pagetitle});
+    }
 }
