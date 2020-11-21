@@ -4,7 +4,13 @@ const router = express.Router();
 
 // destructuring controllers
 const { index, about, contact, course, consulting, corporate, cart, business, banking, course_details, course_video, education,
-instructor_details } = require("../../controllers/default/defaultController")
+instructor_details,
+marketing,
+music,
+package,
+photography,
+purchase,
+web_development } = require("../../controllers/default/defaultController")
 
 // home route
 router.get("/", index);
@@ -45,5 +51,22 @@ router.get("/education", education);
 // instructor-details
 router.get("/instructor-details", instructor_details);
 
+// marketing routes
+router.get("/marketing", marketing);
+
+// music route
+router.get("/music", music);
+
+// package routes
+router.get("/package", package);
+
+// photography routes
+router.get("/photography", photography);
+
+// purchase routes
+router.get("/purchase", purchase);
+
+// web-development route
+router.get("/web-development", web_development);
 
 module.exports = router;

@@ -51,4 +51,28 @@ module.exports = {
         const pagetitle = "Instructor Details";
         res.render("defaultViews/instructor-details", {pagetitle});
     },
+    marketing: (req, res) => {
+        const pagetitle = "Marketting";
+        res.render("defaultViews/marketing", {pagetitle})
+    },
+    music: (req, res) => {
+        const pagetitle = "Music";
+        res.render("defaultViews/music", {pagetitle})
+    },
+    package: (req, res) => {
+        const pagetitle = "Package";
+        res.render("defaultViews/package", {pagetitle})
+    },
+    photography: (req, res) => {
+        const pagetitle = "Photography";
+        res.render("defaultViews/photography", {pagetitle})
+    },
+    purchase: (req, res) => {
+        const pagetitle = "Purchase";
+        res.render("defaultViews/purchase", {pagetitle})
+    },
+    web_development: (req, res) => {
+        const pagetitle = "Web Development";
+        res.render("defaultViews/web-development", {pagetitle})
+    }
 }
