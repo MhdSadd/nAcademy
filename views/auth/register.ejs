@@ -36,19 +36,19 @@
                                     <form action="#">
                                         <div class="form-group">
                                             <label for="signupName"><i class="fa fa-user"></i> Your Name</label>
-                                            <input type="name" id="signupName" placeholder="Your Name">
+                                            <input type="text" name="name" id="name" placeholder="Your Name">
                                         </div>
                                         <div class="form-group">
                                             <label for="signupEmail"><i class="fa fa-envelope"></i> Email Address</label>
-                                            <input type="email" id="signupEmail" placeholder="Email Address">
+                                            <input type="email" name="email" id="email" placeholder="Email Address">
                                         </div>
                                         <div class="form-group">
                                             <label for="signupPassword"><i class="fa fa-lock"></i> Password</label>
-                                            <input type="password" id="signupPassword" placeholder="Password">
+                                            <input type="password" name="password" id="password" placeholder="Password">
                                         </div>
                                         <div class="form-group">
                                             <label for="signupConPassword"><i class="fa fa-lock"></i> Confirm Password</label>
-                                            <input type="password" id="signupConPassword" placeholder="Confirm Password">
+                                            <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password">
                                         </div>
                                         <div class="checkbox-forgotpass-area">
                                             <div class="checkbox-part">
@@ -66,22 +66,26 @@
                                     </form>
                                 </div>
                                 <div class="tab-second-content lost">
-                                    <form action="#">
+                                    <form action="/auth/register" method="POST">
                                         <div class="form-group">
                                             <label for="signupName2"><i class="fa fa-user"></i> Your Name</label>
-                                            <input type="name" id="signupName2" placeholder="Your Name">
+                                            <input type="type" name="name" id="name" placeholder="Your Name">
                                         </div>
                                         <div class="form-group">
                                             <label for="signupEmail2"><i class="fa fa-envelope"></i> Email Address</label>
-                                            <input type="email" id="signupEmail2" placeholder="Email Address">
+                                            <input type="email" name="email" id="email" placeholder="Email Address">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="signupPhone"><i class="fa fa-envelope"></i> Phone Number</label>
+                                            <input type="tel" name="phone" id="phone" placeholder="Email Address">
                                         </div>
                                         <div class="form-group">
                                             <label for="signupPassword2"><i class="fa fa-lock"></i> Password</label>
-                                            <input type="password" id="signupPassword2" placeholder="Password">
+                                            <input type="password" name="password" id="password" placeholder="Password">
                                         </div>
                                         <div class="form-group">
                                             <label for="signupConPassword2"><i class="fa fa-lock"></i> Confirm Password</label>
-                                            <input type="password" id="signupConPassword2" placeholder="Confirm Password">
+                                            <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password">
                                         </div>
                                         <div class="checkbox-forgotpass-area">
                                             <div class="checkbox-part">
@@ -93,7 +97,8 @@
                                             </div>
                                         </div>
                                         <div class="login-button margin-top-20">
-                                            <a href="#" class="template-button">login account</a>
+                                            <input type="submit" class="template-button" value="Register">
+                                            <!-- <a href="#" class="template-button">login account</a> -->
                                             <span>already have an account? <a href="/auth/login">login</a></span>
                                         </div>
                                     </form>
