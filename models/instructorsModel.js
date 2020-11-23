@@ -24,8 +24,7 @@ const instructorSchema = new Schema({
         required: true,
     },
     confirmPassword: {
-        type: String,
-        required: true
+        type: String
     },
     update_profile: {
         img: {

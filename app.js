@@ -9,6 +9,7 @@ const logger = require("morgan");
 const flash = require("connect-flash");
 const mongoose = require("mongoose");
 const passport = require("passport");
+require("./config/passport")(passport);
 const bodyParser = require("body-parser");
 const session = require("express-session");
 
@@ -40,6 +41,16 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 // configuring morgan
 app.use(logger("dev"));
+
+// SET UP EXPRESS_SESSION MIDDLEWARE
+app.use(
+    session({
+        secret: "qwerty45yr4536yr/.,/",
+        resave: true,
+        saveUninitialized: true,
+        cookie: { secure: true}
+    })
+);
 
 //initiallize passport
 app.use(passport.initialize());
