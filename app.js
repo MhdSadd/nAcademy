@@ -9,14 +9,10 @@ const session = require("express-session");
 
 const app = express();
 
-//configure express
-app.use(express.json());
-app.use(express.urlencoded({extended: true}));
-app.use(express.static(path.join(__dirname,'public')));
-
 // body parser middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname,'public')));
 
 //Configure Middleware
 app.use(bodyParser.json());
@@ -32,10 +28,14 @@ app.set('view engine', 'ejs');
 // routing
 const defaultRoutes = require("./routes/default/defaultRoutes");
 const auth = require("./routes/auth/authRoutes");
+const admin = require("./routes/admin/adminRoutes");
+const users = require("./routes/users/usersRoutes")
 
 // routes
 app.use("/", defaultRoutes);
-app.use("/auth", auth)
+app.use("/auth", auth);
+app.use("/admin", admin);
+app.use("/users", users);
 
 
 // Error handling
