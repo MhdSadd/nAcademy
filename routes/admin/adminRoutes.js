@@ -9,7 +9,7 @@ Admin routing
 <=========================================*/
 
 // index route
-router.get("/index", index);
+router.get("/", index);
 
 // profile route
 router.get("/profile", profile);
