@@ -88,7 +88,7 @@ const users = require("./routes/users/usersRoutes")
 app.use("/", defaultRoutes);
 app.use("/auth", auth);
 app.use("/admin", admin);
-app.use("/users", users);
+app.use("/user", users);
 
 
 // Error handling
