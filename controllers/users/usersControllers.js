@@ -1,26 +1,32 @@
 module.exports = {
     index: (req, res) => {
         const pagetitle = "User";
-        res.render("users/index", {pagetitle});
+        const email = req.email;
+        res.render("users/index", {pagetitle, email});
     },
     profile: (req, res) => {
         const pagetitle = "Profile";
-        res.render("users/profile", {pagetitle});
+        const email = req.email;
+        res.render("users/profile", {pagetitle, email});
     },
     basic_table: (req, res) => {
         const pagetitle = "Basic Table";
-        res.render("users/basic-table", {pagetitle});
+        const email = req.email;
+        res.render("users/basic-table", {pagetitle, email});
     }, 
     maps: (req, res) => {
         const pagetitle = "Map";
-        res.render("users/map", {pagetitle});
+        const email = req.email;
+        res.render("users/map", {pagetitle, email});
     },
     icons: (req, res) => {
         const pagetitle = "Icons";
-        res.render("users/icons", {pagetitle});
+        const email = req.email;
+        res.render("users/icons", {pagetitle, email});
     },
     blank_page: (req, res) => {
         const pagetitle = "Blank Page";
-        res.render("users/blank-page", {pagetitle});
+        const email = req.email;
+        res.render("users/blank-page", {pagetitle, email});
     }
 }

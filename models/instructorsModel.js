@@ -3,6 +3,10 @@ const mongoose = require("mongoose");
 const {Schema} = mongoose;
 
 const instructorSchema = new Schema({
+    approvedInstructor: {
+        type: Boolean,
+        default: false
+    },
     name: {
         type: String,
         required: true
@@ -11,6 +15,7 @@ const instructorSchema = new Schema({
         type: String,
         unique: true,
         required: true,
+        trim: true
         // validate: (value) => {
         //     return validator.isEmail(value)
         // }
@@ -18,6 +23,11 @@ const instructorSchema = new Schema({
     phone: {
         type: Number,
         required: true
+    },
+    role: {
+        type: String,
+        default: "instructor",
+        enum: ["student", "instructor", "admin"]
     },
     password: {
         type: String,
