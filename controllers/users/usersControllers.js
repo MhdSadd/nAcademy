@@ -1,6 +1,6 @@
 module.exports = {
     index: (req, res) => {
-        const pagetitle = "Dashboard";
+        const pagetitle = "User";
         res.render("users/index", {pagetitle});
     },
     profile: (req, res) => {
