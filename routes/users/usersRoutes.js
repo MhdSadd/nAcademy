@@ -1,4 +1,5 @@
 const express = require("express");
+const { ensureAuthenticated } = require("../../config/auth");
 const router = express.Router();
 
 // destructuring users controller
@@ -9,7 +10,7 @@ Users routing
 <======================================*/
 
 // index route
-router.get("/", index);
+router.get("/", ensureAuthenticated, index);
 
 // profile route
 router.get("/profile", profile);

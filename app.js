@@ -34,7 +34,7 @@ app.use(
         secret: `${process.env.NODE_SESSION}`,
         resave: true,
         saveUninitialized: true,
-        cookie: { secure: true}
+        // cookie: { secure: true}
     })
 );
 

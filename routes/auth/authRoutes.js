@@ -5,12 +5,12 @@ const router = express.Router();
 const { loginGet, loginPost, registerGet, registerPost, logout } = require("../../controllers/auth/authController");
 
 // Login route
-router.route("/instructor/login")
+router.route("/login")
 .get(loginGet)
 .post(loginPost);
 
 // Register Route
-router.route("/instructor/register")
+router.route("/register")
 .get(registerGet)
 .post(registerPost);
 

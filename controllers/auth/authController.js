@@ -49,17 +49,17 @@ module.exports = {
                 pagetitle
             });
         } else {
-            await Instructor.findOne({email: req.body.email})
+            await Instructor.findOne({email: email})
             .then(async(instructor) => {
                 if(instructor) {
                     console.log("Sorry User already Exist ");
                     return res.redirect("/auth/register");
                 } else {
                     const newInstructor = await new Instructor ({
-                        name: req.body.name,
-                        email: req.body.email,
-                        phone: req.body.phone,
-                        password: req.body.password
+                        name,
+                        email,
+                        phone,
+                        password
                     })
 
 
@@ -81,7 +81,7 @@ module.exports = {
                                         "success_msg",
                                         "Registration succesfull, You can now log in"
                                     );
-                                    console.log(`Reg successfull ${newInstructor}`);
+                                    console.log(`Reg successfull ${user}`);
                                     res.redirect("/auth/login");
                                 })
                                 .catch((err) => console.log(err));

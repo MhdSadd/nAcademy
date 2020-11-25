@@ -74,8 +74,12 @@
                     </ul>
                 </li>
                 <li><a href="/contact">contact</a></li>
-                <li><a href="/auth/login">log in</a></li>
-                <li><a href="/auth/register">register</a></li>
+                <% if (user) { %>
+                    <li><a href="/users/logout" >Logout</a></li>
+                <% } else { %>
+                    <li><a href="/auth/login">log in</a></li>
+                    <li><a href="/auth/register">register</a></li>
+                <%}%>
                 <li><a href="/error">404</a></li>
             </ul>
         </div>
@@ -108,7 +112,11 @@
                         <div class="col-sm-6">
                             <div class="info-right">
                                 <ul>
-                                    <li class="login-button"><a href="/auth/login">login</a></li>
+                                    <% if (user) { %>
+                                        <li class="login-button"><a href="/auth/login">logout</a></li>
+                                    <% } else {%>
+                                        <li class="login-button"><a href="/auth/login">login</a></li>
+                                    <% } %> 
                                     <li><a href="#"><i class="fa fa-twitter"></i></a></li>
                                     <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                                     <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
