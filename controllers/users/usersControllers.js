@@ -9,7 +9,8 @@ module.exports = {
         const pagetitle = "Profile";
         const name = req.user.name;
         const email = req.user.email;
-        res.render("users/profile", {pagetitle, email, name});
+        const phone = req.user.phone;
+        res.render("users/profile", {pagetitle, email, name, phone});
         next();
     },
     basic_table: (req, res, next) => {
