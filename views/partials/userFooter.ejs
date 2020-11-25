@@ -28,6 +28,25 @@
     <script src="/static/plugins/bower_components/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js"></script>
     <!-- Sparkline chart JavaScript -->
     <script src="/static/plugins/bower_components/jquery-sparkline/jquery.sparkline.min.js"></script>
+    <script>
+        jQuery(function($) {
+
+            $('#tags input').on('focusout', function() {
+              var txt = this.value.replace(/[^a-zA-Z0-9\+\-\.\#]/g, ''); // allowed characters list
+              if (txt) $(this).before('<span class="tag">' + txt + '</span>');
+              this.value = "";
+              this.focus();
+            }).on('keyup', function(e) {
+              // comma|enter (add more keyCodes delimited with | pipe)
+              if (/(188|13)/.test(e.which)) $(this).trigger('focusout');
+            });
+          
+            $('#tags').on('click', '.tag', function() {
+              if (confirm("Really delete this tag?")) $(this).remove();
+            });
+          
+          });
+    </script>
     <!-- Custom Theme JavaScript -->
     <script src="/static/js/custom.min.js"></script>
     <script src="/static/js/dashboard1.js"></script>
