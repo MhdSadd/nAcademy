@@ -6,7 +6,8 @@ const _connect = () => {
     mongoose.connect(`${MONGO_SERVER}/${DATABASE_NAME}`, {
         useCreateIndex: true,
         useNewUrlParser: true,
-        useUnifiedTopology: true
+        useUnifiedTopology: true,
+        useFindAndModify: true
     })
     .then((res) => {
         console.log(`Database Connected Successfully @`)

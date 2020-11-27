@@ -12,6 +12,7 @@ const passport = require("passport");
 require("./config/passport")(passport);
 const bodyParser = require("body-parser");
 const session = require("express-session");
+const methodOverride = require("method-override");
 
 
 const app = express();
@@ -24,6 +25,19 @@ app.use(express.static(path.join(__dirname,'public')));
 //Configure Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
+
+// NOTE: when using req.body, you must fully parse the request body
+//       before you call methodOverride() in your middleware stack,
+//       otherwise req.body will not be populated.
+app.use(methodOverride('_method'))
+app.use(methodOverride(function (req, res) {
+    if (req.body && typeof req.body === 'object' && '_method' in req.body) {
+      // look in urlencoded POST bodies and delete it
+        var method = req.body._method
+        delete req.body._method
+        return method
+    }
+}))
 
 // configuring morgan
 app.use(logger("dev"));
