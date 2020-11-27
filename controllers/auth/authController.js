@@ -13,6 +13,7 @@ module.exports = {
             failureRedirect: "/auth/login",
             failureFlash: true,
         })(req, res, next);
+        // req.flash("success_msg", "You are Logged In");
     },
     registerGet: (req, res) => {
         const pagetitle = "Register";
@@ -99,6 +100,25 @@ module.exports = {
         req.logOut();
         req.flash("success_msg", "You are logged out");
         res.redirect("/auth/login")
+    },
+    updateGet: (req, res) => {
+        const pagetitle = "Profile";
+        res.render("users/profile", {pagetitle});
+    },
+    updatePut: async (req, res) => {
+        if(!req.body) {
+            req.flash("error_msg", "Please fill in the form");
+        } else {
+            await Instructor.findOneAndUpdate(req.body, (err, data) => {
+                if(err) {
+                    return err;
+                } else {
+                    req.flash("success_msg", "Status Updated successfully");
+                    console.log(`Updated ${data} successfully!`);
+                    res.redirect("/user/profile");
+                }
+            })
+        }
     }
 }
 

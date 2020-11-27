@@ -15,5 +15,12 @@ module.exports = {
             req.flash("error_msg", "Admin Prevelages are Required");
             res.redirect("/admin/login");
         }
+    },
+    isLoggedIn: (req, res, next) => {
+        if (req.isAuthenticated()) {
+            next();
+        } else {
+            res.redirect('/login');
+        }
     }
 }

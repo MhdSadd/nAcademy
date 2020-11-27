@@ -1,9 +1,9 @@
 const express = require("express");
-const { ensureAuthenticated } = require("../../config/auth");
+const { ensureAuthenticated, isLoggedIn } = require("../../config/auth");
 const router = express.Router();
 
 // destructuring users controller
-const { index, profile, basic_table, maps, icons, blank_page } = require("../../controllers/users/usersControllers");
+const { index, profile, maps, icons, blank_page, update_profileGet, update_profilePut } = require("../../controllers/users/usersControllers");
 
 /* ====================================> 
 Users routing
@@ -13,18 +13,23 @@ Users routing
 router.get("/", ensureAuthenticated, index);
 
 // profile route
-router.get("/profile", profile);
+router.get("/profile", ensureAuthenticated, profile);
 
 // basic-table route
-router.get("/basic-table", basic_table);
+// router.get("/update-profile", update-profile);
 
 // maps route 
-router.get("/maps", maps);
+router.get("/maps",ensureAuthenticated, maps);
 
 // icons route
-router.get("/icons", icons);
+router.get("/icons", ensureAuthenticated, icons);
 
 // Blank-page route
-router.get("/blank-page", blank_page);
+router.get("/blank-page", ensureAuthenticated, blank_page);
+
+// put route
+router.route("/update-profile", isLoggedIn)
+.get(update_profileGet)
+.post(update_profilePut)
 
 module.exports = router;

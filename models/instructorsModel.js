@@ -36,17 +36,17 @@ const instructorSchema = new Schema({
     confirmPassword: {
         type: String
     },
-    update_profile: {
-        img: {
-            type: String,
-        },
-        skills: {
-            type: Array
-        },
-        work_experience: {
-            type: Array
-        }
+    
+    avatar: {
+        type: String,
+    },
+    skills: {
+        type: Array
+    },
+    experience: {
+        type: Array
     }
+
 })
 
 module.exports = {Instructor: mongoose.model("Instructor", instructorSchema) };
