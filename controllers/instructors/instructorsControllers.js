@@ -1,10 +1,10 @@
-const { Instructor } = require("../../models/instructorsModel");
+const { Instructor } = require("../../models/instructorModel");
 
 module.exports = {
     index: (req, res, next) => {
         const pagetitle = "User";
         const email = req.user.email;
-        res.render("instructors/index", {pagetitle, email});
+        res.render("instructor/index", {pagetitle, email});
         next();
     },
     profile: (req, res, next) => {
@@ -12,31 +12,31 @@ module.exports = {
         const name = req.user.name;
         const email = req.user.email;
         const phone = req.user.phone;
-        res.render("instructors/profile", {pagetitle, email, name, phone});
+        res.render("instructor/profile", {pagetitle, email, name, phone});
         next();
     },
     basic_table: (req, res, next) => {
         const pagetitle = "Basic Table";
         const email = req.email;
-        res.render("instructors/basic-table", {pagetitle, email});
+        res.render("instructor/basic-table", {pagetitle, email});
         next();
     }, 
     maps: (req, res, next) => {
         const pagetitle = "Map";
         const email = req.email;
-        res.render("instructors/map", {pagetitle, email});
+        res.render("instructor/map", {pagetitle, email});
         next();
     },
     icons: (req, res, next) => {
         const pagetitle = "Icons";
         const email = req.email;
-        res.render("instructors/icons", {pagetitle, email});
+        res.render("instructor/icons", {pagetitle, email});
         next();
     },
     blank_page: (req, res, next) => {
         const pagetitle = "Blank Page";
         const email = req.email;
-        res.render("instructors/blank-page", {pagetitle, email});
+        res.render("instructor/blank-page", {pagetitle, email});
         next();
     },
     update_profileGet: (req, res) => {
@@ -48,7 +48,7 @@ module.exports = {
         const skills = req.user.skills;
         const experience = req.user.experience;
         const id = req.user.id;
-        res.render("instructors/update_profile", {
+        res.render("instructor/update_profile", {
             pagetitle, 
             name, 
             email, 

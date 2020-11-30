@@ -4,6 +4,7 @@ module.exports = {
         res.locals.error_msg = req.flash("error_msg");
         res.locals.error = req.flash("error");
         res.locals.session = req.session;
+        res.locals.instructor = req.instructor;
         res.locals.user = req.user;
         // res.locals.isAuthenticated = isAuthenticated();
 

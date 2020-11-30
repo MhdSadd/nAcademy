@@ -77,7 +77,7 @@ const instructors = require("./routes/instructors/instructorsRoutes");
 app.use("/", defaultRoutes);
 app.use("/auth", auth);
 app.use("/admin", admin);
-app.use("/user", instructors);
+app.use("/instructor", instructors);
 
 
 // Error handling
