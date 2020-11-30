@@ -3,7 +3,7 @@ const { ensureAuthenticated, isLoggedIn } = require("../../config/auth");
 const router = express.Router();
 
 // destructuring users controller
-const { index, profile, maps, icons, blank_page, update_profileGet, update_profilePut } = require("../../controllers/users/usersControllers");
+const { index, profile, maps, icons, blank_page, update_profileGet, update_profilePut } = require("../../controllers/instructors/usersControllers");
 
 /* ====================================> 
 Users routing

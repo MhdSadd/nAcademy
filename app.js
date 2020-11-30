@@ -71,13 +71,13 @@ app.set('view engine', 'ejs');
 const defaultRoutes = require("./routes/default/defaultRoutes");
 const auth = require("./routes/auth/authRoutes");
 const admin = require("./routes/admin/adminRoutes");
-const users = require("./routes/users/usersRoutes");
+const instructors = require("./routes/instructors/instructorsRoutes");
 
 // routes
 app.use("/", defaultRoutes);
 app.use("/auth", auth);
 app.use("/admin", admin);
-app.use("/user", users);
+app.use("/user", instructors);
 
 
 // Error handling
