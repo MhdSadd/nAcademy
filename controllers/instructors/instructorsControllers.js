@@ -1,4 +1,4 @@
-const { Instructor } = require("../../models/instructorModel");
+const { Instructor } = require("../../models/instructorsModel");
 
 module.exports = {
     index: (req, res, next) => {
