@@ -10,20 +10,20 @@ module.exports = function (passport) {
         usernameField: "email",
       },
       (email, password, done) => {
-        // MATCH USER
+        // MATCH  INSTRUCTOR
         Instructor.findOne({ email: email })
-          .then((user) => {
-            if (!user) {
+          .then((instructor) => {
+            if (!instructor) {
               return done(null, false, {
                 message: "That email is not registered",
               });
             }
 
             // MATCH PASSWORD
-            bcrypt.compare(password, user.password, (err, isMatch) => {
+            bcrypt.compare(password, instructor.password, (err, isMatch) => {
               if (err) throw err;
               if (isMatch) {
-                return done(null, user);
+                return done(null, instructor);
               } else {
                 return done(null, false, { message: "Password incorrect" });
               }
@@ -34,13 +34,13 @@ module.exports = function (passport) {
     )
   );
 
-  // SERIALIZE AND DESERIALIZE USER
-  passport.serializeUser((user, done) => {
-    done(null, user.id);
+  // SERIALIZE AND DESERIALIZE  INSTRUCTOR
+  passport.serializeUser((instructor, done) => {
+    done(null, instructor.id);
   });
   passport.deserializeUser((id, done) => {
-    Instructor.findById(id, (err, user) => {
-      done(err, user);
+    Instructor.findById(id, (err, instructor) => {
+      done(err, instructor);
     });
   });
 };
