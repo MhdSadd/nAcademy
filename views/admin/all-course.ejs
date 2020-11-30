@@ -1,0 +1,41 @@
+<%- include("../partials/adminHeader") %> 
+<!-- ============================================================== -->
+        <!-- Page Content -->
+        <!-- ============================================================== -->
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <%- include("../partials/adminBreadCrumb") %> 
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="white-box">
+                            <h3 class="box-title">All Courses</h3> </div>
+                    </div>
+                </div>
+
+                <div class="row">
+
+                <%courses.forEach(courses => {%>
+                    
+                    <div class="card col-sm-6 col-lg-4" style="width: 300px; margin: 3rem; background-color: rgb(245, 208, 139); padding: 1rem;">
+                        <img class="" src="<%= courses.courseImage %>" style="height: 200px; width: 300px;" alt="Card image cap">
+                        <div class="card-body">
+                          <h5 class="card-title" style="font-size: 2rem; font-weight: bolder;"><%= courses.courseName %></h5>
+                          <p class="card-text"><%= courses.description %> </p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                          <li class="list-group-item">Price: <%= courses.price %> </li>
+                          <li class="list-group-item">Instructor: <%= courses.instructor %> </li>
+                        </ul>
+                        <div class="card-body">
+                          <a href="/courses/update-course/<%= courses._id %> " class="card-link"><button class="btn btn-success">Update Course</button></a>
+                          <a href="/courses/delete-course/<%= courses._id %> " class="card-link"><button class="btn btn-danger">Delete Course</button></a>
+                        </div>
+                      </div>
+
+
+
+                <%})%>
+              </div>
+
+            </div>
+<%- include("../partials/adminFooter") %> 

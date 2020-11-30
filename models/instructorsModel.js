@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const {Schema} = mongoose;
 
 const instructorSchema = new Schema({
-    approvedInstructor: {
+    instructorApproved: {
         type: Boolean,
         default: false
     },
@@ -45,6 +45,13 @@ const instructorSchema = new Schema({
     },
     experience: {
         type: Array
+    },
+    instructorId: {
+        type: String
+    },
+    registrationDate: {
+        type: Date,
+        default: Date.now()
     }
 
 })

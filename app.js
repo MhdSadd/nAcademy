@@ -1,21 +1,24 @@
 const dotenv = require("dotenv");
 dotenv.config();
 
-require("./misc/database");
-const {globalVariable} = require("./config/default");
 
 const express = require("express");
+const app = express();
 const path = require("path");
 const logger = require("morgan");
+const bodyParser = require("body-parser");
+const ejs = require("ejs");
+const session = require("express-session");
 const flash = require("connect-flash");
 const passport = require("passport");
 require("./config/passport")(passport);
-const bodyParser = require("body-parser");
-const session = require("express-session");
+const {globalVariable} = require("./config/configurations");
+require("./misc/database");
 const methodOverride = require("method-override");
 
 
-const app = express();
+// configuring morgan
+app.use(logger("dev"));
 
 // body parser middleware
 app.use(express.json());
@@ -39,8 +42,6 @@ app.use(methodOverride(function (req, res) {
     }
 }))
 
-// configuring morgan
-app.use(logger("dev"));
 
 // SET UP EXPRESS_SESSION MIDDLEWARE
 app.use(
@@ -48,7 +49,7 @@ app.use(
         secret: `${process.env.NODE_SESSION}`,
         resave: true,
         saveUninitialized: true,
-        // cookie: { secure: true}
+        cookie: { secure: false, maxAge: Date.now() + 3600000}
     })
 );
 
@@ -70,14 +71,17 @@ app.set('view engine', 'ejs');
 // routing
 const defaultRoutes = require("./routes/default/defaultRoutes");
 const auth = require("./routes/auth/authRoutes");
+const coursesRoutes = require("./routes/courses/course");
 const admin = require("./routes/admin/adminRoutes");
 const instructors = require("./routes/instructors/instructorsRoutes");
+const { ensureAuthenticated } = require("./config/auth");
 
 // routes
 app.use("/", defaultRoutes);
 app.use("/auth", auth);
+app.use("/courses", coursesRoutes)
 app.use("/admin", admin);
-app.use("/instructor", instructors);
+app.use("/instructor", ensureAuthenticated, instructors);
 
 
 // Error handling

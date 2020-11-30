@@ -1,5 +1,5 @@
 const express = require("express");
-const { ensureAuthenticated, isLoggedIn } = require("../../config/auth");
+// const { ensureAuthenticated, isLoggedIn } = require("../../config/auth");
 const router = express.Router();
 
 // destructuring users controller
@@ -10,25 +10,25 @@ Users routing
 <======================================*/
 
 // index route
-router.get("/", ensureAuthenticated, index);
+router.get("/", index);
 
 // profile route
-router.get("/profile", ensureAuthenticated, profile);
+router.get("/profile", profile);
 
 // basic-table route
 // router.get("/update-profile", update-profile);
 
 // maps route 
-router.get("/maps",ensureAuthenticated, maps);
+router.get("/maps", maps);
 
 // icons route
-router.get("/icons", ensureAuthenticated, icons);
+router.get("/icons", icons);
 
 // Blank-page route
-router.get("/blank-page", ensureAuthenticated, blank_page);
+router.get("/blank-page", blank_page);
 
 // put route
-router.route("/update-profile", isLoggedIn)
+router.route("/update-profile")
 .get(update_profileGet)
 .post(update_profilePut)
 

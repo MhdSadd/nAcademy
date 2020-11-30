@@ -12,7 +12,10 @@ module.exports = {
         const name = req.user.name;
         const email = req.user.email;
         const phone = req.user.phone;
-        res.render("instructor/profile", {pagetitle, email, name, phone});
+        const avatar = req.user.avatar;
+        const skills = req.user.skills;
+        const experience = req.user.experience;
+        res.render("instructor/profile", {pagetitle, email, name, phone, avatar, skills, experience});
         next();
     },
     basic_table: (req, res, next) => {
@@ -68,7 +71,7 @@ module.exports = {
                 req.flash("error_msg", "Cannot update");
             } else {
                 await instructor.save();
-                res.redirect("/user/profile");
+                res.redirect("/instructor/profile");
                 console.log(`Update was successfull ${instructor}`);
                 req.flash("success_msg", "Your update was Successful");
             }
@@ -76,7 +79,7 @@ module.exports = {
         .catch((err) => {
             console.log("An error occured while updating");
             req.flash("error_msg", "Your Update couldn't be processed");
-            res.redirect("/user/update-profile");
+            res.redirect("/instructor/update-profile");
         })
     }
     // update_profilePut: (req, res) => {

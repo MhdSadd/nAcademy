@@ -1,6 +1,7 @@
 const bcrypt = require("bcryptjs");
 const passport = require("passport");
 const {Instructor} = require("../../models/instructorsModel");
+const randomString = require("randomstring");
 
 module.exports = {
     loginGet: (req, res) => {
@@ -9,7 +10,7 @@ module.exports = {
     },
     loginPost: (req, res, next) => {
         passport.authenticate("local", {
-            successRedirect: "/user",
+            successRedirect: "/instructor",
             failureRedirect: "/auth/login",
             failureFlash: true,
         })(req, res, next);
@@ -20,7 +21,8 @@ module.exports = {
         res.render("auth/register", {pagetitle});
     },
     registerPost: async (req, res) => {
-            const { name, email, phone, password, confirmPassword } = req.body;
+            const { name, email, phone, password, confirmPassword, avatar, instructorApproved, skills, experience} = req.body;
+            console.log(req.body);
         let errors = [];
 
         // CHECKING REQUIRED FIELD
@@ -56,11 +58,19 @@ module.exports = {
                     console.log("Sorry User already Exist ");
                     return res.redirect("/auth/register");
                 } else {
+                    const instructorId = `nInst${ randomString.generate({
+                        lenght: 6,
+                        charset: "numeric"
+                    })}`
                     const newInstructor = await new Instructor ({
                         name,
                         email,
                         phone,
-                        password
+                        avatar,
+                        skills: [],
+                        experience: [],
+                        password,
+                        instructorId
                     })
 
 
@@ -77,12 +87,12 @@ module.exports = {
                             // SAVING USER
                             newInstructor
                                 .save()
-                                .then((user) => {
+                                .then((instructor) => {
                                     req.flash(
                                         "success_msg",
                                         "Registration succesfull, You can now log in"
                                     );
-                                    console.log(`Reg successfull ${user}`);
+                                    console.log(`Reg successfull ${instructor}`);
                                     res.redirect("/auth/login");
                                 })
                                 .catch((err) => console.log(err));
@@ -103,7 +113,7 @@ module.exports = {
     },
     updateGet: (req, res) => {
         const pagetitle = "Profile";
-        res.render("users/profile", {pagetitle});
+        res.render("instructor/profile", {pagetitle});
     },
     updatePut: async (req, res) => {
         if(!req.body) {
@@ -115,7 +125,7 @@ module.exports = {
                 } else {
                     req.flash("success_msg", "Status Updated successfully");
                     console.log(`Updated ${data} successfully!`);
-                    res.redirect("/user/profile");
+                    res.redirect("/instructor/profile");
                 }
             })
         }

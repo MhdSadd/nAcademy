@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 // destructuring authControllers
-const { loginGet, loginPost, registerGet, registerPost, logout, updateGet, updatePut } = require("../../controllers/auth/authController");
+const { loginGet, loginPost, registerGet, registerPost, logout, updateGet, updatePut } = require("../../controllers/auth/instructorController");
 
 // Login route
 router.route("/login")
