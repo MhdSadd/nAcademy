@@ -75,6 +75,8 @@ module.exports = {
         student.courses.push(course)
         // console.log(student)
         student.save()
+        req.flash({ message: "Course registration successfull"});
+        res.redirect("/courses/package");
       })
     })
     .catch(err=>{console.log(err)})

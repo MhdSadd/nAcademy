@@ -1,5 +1,6 @@
 <%- include("../partials/header") %> 
 <%- include("../partials/breadCrumb") %>
+<%- include("../partials/messages") %> 
         <section class="package-section padding-top-120">
             <div class="container">
                 <div class="row">
@@ -27,6 +28,8 @@
                                 </div>
                                 <div class="package-image">
                                     <img src="<%= courses.courseImage %> " style="height: 275px;" alt="image">
+                                    <a href="/courses/single-package/<%= courses._id %> " style="background-color: orange; width: 100%;">View course</a>
+
                                 </div>
                             </div>
                         </div>
