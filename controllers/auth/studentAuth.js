@@ -1,9 +1,13 @@
 const mongoose  = require('mongoose')
 const bcrypt = require("bcryptjs");
 const randomString = require('randomstring')
-const Student = require('../../models/user/students').Student
+const {Student} = require('../../models/studentsModel');
 
 module.exports = {
+  studentRegisterGet: (req, res) => {
+    const pagetitle = "Register";
+    res.render("auth/register", {pagetitle});
+  },
   studentRegisterPost : (req, res, err) => {
     const { name, email, password, confirmPassword } = req.body;
     console.log(req.body)

@@ -1,5 +1,6 @@
 const { Router } = require("express");
 const express = require("express");
+// const { registerGet } = require("../../controllers/auth/instructorController");
 const router = express.Router();
 
 // destructuring controllers
@@ -10,7 +11,8 @@ music,
 package,
 photography,
 purchase,
-web_development } = require("../../controllers/default/defaultController")
+web_development, 
+reigisterGet} = require("../../controllers/default/defaultController")
 
 // home route
 router.get("/", index);
@@ -68,5 +70,9 @@ router.get("/purchase", purchase);
 
 // web-development route
 router.get("/web-development", web_development);
+
+// Register route
+router.route('/register')
+.get(reigisterGet)
 
 module.exports = router;

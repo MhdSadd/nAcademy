@@ -22,5 +22,11 @@ module.exports = {
         } else {
             res.redirect('/login');
         }
+    },
+    forwardAuthenticated: (req, res, next) => {
+        if(!req.isAuthenticated()) {
+            return next();
+        }
+        res.redirect("/admin");
     }
 }

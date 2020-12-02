@@ -33,7 +33,16 @@ module.exports = {
   
   },
   courseGet: (req, res)=>{
-    const courses = AddCourse.find({}).then((err, courses)=>{
+    // const courses = AddCourse.find({}).then((err, courses)=>{
+    //   if(err) throw err
+    //   else{
+    //     // console.log(courses)
+    //   }
+    //   let pageTitle = 'Package'
+    //   res.render('default/packages', {pageTitle, courses})
+    // })
+    const courses = AddCourse.find({})
+    courses.exec((err, courses)=>{
       if(err) throw err
       else{
         console.log(courses)
@@ -41,42 +50,34 @@ module.exports = {
       let pageTitle = 'Package'
       res.render('default/packages', {pageTitle, courses})
     })
-    // courses.exec((err, courses)=>{
-    //   if(err) throw err
-    //   else{
-    //     console.log(courses)
-    //   }
-    //   let pageTitle = 'Package'
-    //   res.render('default/packages', {pageTitle, courses})
-    // })
     
   },
-  delete_course: async (req,res)=>{
-    const id = req.params.courseId;
-     await AddCourse.findByIdAndDelete(id)
-          .then(deleteCourse => {
-              console.log(deleteCourse);
-              res.redirect("/admin/all-courses")
-              return
-          })
-          .catch(err => console.log(err))
-  },
-  update_course: async(req, res)=>{
-    const id = req.params.courseId;
-    const courses =  await AddCourse.findById(id).then((err, courses)=>{
-      if(err) throw err
-      else{
-        console.log("look here::::::::::::::::::",courses)
-        let pageTitle = 'one'
-        res.render('/', {pageTitle, courses})
-      }
+  // delete_course: async (req,res)=>{
+  //   const id = req.params.courseId;
+  //    await AddCourse.findByIdAndDelete(id)
+  //         .then(deleteCourse => {
+  //             console.log(deleteCourse);
+  //             res.redirect("/admin/all-courses")
+  //             return
+  //         })
+  //         .catch(err => console.log(err))
+  // },
+  // update_course: async(req, res)=>{
+  //   const id = req.params.courseId;
+  //   const courses =  await AddCourse.findById(id).then((err, courses)=>{
+  //     if(err) throw err
+  //     else{
+  //       console.log("look here::::::::::::::::::",courses)
+  //       let pageTitle = 'one'
+  //       res.render('/', {pageTitle, courses})
+  //     }
   
-    })
-    .catch(err=>console.log(err))
-  },
-  courseUpdateForm: async(req, res, next)=>{
-    const id = req.params.courseId
-    const {courseName, courseImage,price,promo,description,instructor, duration} = req.body
-    await AddCourse.findByIdAndUpdate(id, (req.body))
-  }
+  //   })
+  //   .catch(err=>console.log(err))
+  // },
+  // courseUpdateForm: async(req, res, next)=>{
+  //   const id = req.params.courseId
+  //   const {courseName, courseImage,price,promo,description,instructor, duration} = req.body
+  //   await AddCourse.findByIdAndUpdate(id, (req.body))
+  // }
 }

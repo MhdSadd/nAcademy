@@ -74,5 +74,9 @@ module.exports = {
     web_development: (req, res) => {
         const pagetitle = "Web Development";
         res.render("defaultViews/web-development", {pagetitle})
-    }
+    },
+    reigisterGet: (req, res)=>{
+        let pageTitle = 'Register'
+        res.render('auth/register', {pageTitle})
+    },
 }

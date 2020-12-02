@@ -24,7 +24,7 @@
                                             <a href="/auth/register" class="template-button-2">instructor</a>
                                         </li>
                                         <li class="tab-three">
-                                            <a href="#" class="template-button-2">student</a>
+                                            <a href="/auth/student" class="template-button-2">student</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -70,34 +70,39 @@
                                 </div>
 
                                 <div class="tab-three-content lost">
-                                    <form action="#">
+                                    <form action="/auth/student" method="POST">
                                         <div class="form-group">
-                                            <label for="signupName3"><i class="fa fa-user"></i> Your Name</label>
-                                            <input type="name" id="signupName3" placeholder="Your Name">
+                                            <label for="signupName2"><i class="fa fa-user"></i> Your Name</label>
+                                            <input type="type" name="name" id="name" placeholder="Your Name" value="<%= typeof name != 'undefined' ? name : '' %>">
                                         </div>
                                         <div class="form-group">
-                                            <label for="signupEmail3"><i class="fa fa-envelope"></i> Email Address</label>
-                                            <input type="email" id="signupEmail3" placeholder="Email Address">
+                                            <label for="signupEmail2"><i class="fa fa-envelope"></i> Email Address</label>
+                                            <input type="email" name="email" id="email" placeholder="Email Address" value="<%= typeof email != 'undefined' ? email : '' %>">
                                         </div>
                                         <div class="form-group">
-                                            <label for="signupPassword3"><i class="fa fa-lock"></i> Password</label>
-                                            <input type="password" id="signupPassword3" placeholder="Password">
+                                            <label for="signupPhone"><i class="fa fa-envelope"></i> Phone Number</label>
+                                            <input type="tel" name="phone" id="phone" placeholder="Email Address" value="<%= typeof phone != 'undefined' ? phone : '' %>">
                                         </div>
                                         <div class="form-group">
-                                            <label for="signupConPassword3"><i class="fa fa-lock"></i> Confirm Password</label>
-                                            <input type="password" id="signupConPassword3" placeholder="Confirm Password">
+                                            <label for="signupPassword2"><i class="fa fa-lock"></i> Password</label>
+                                            <input type="password" name="password" id="password" placeholder="Password" value="<%= typeof password != 'undefined' ? password : '' %>">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="signupConPassword2"><i class="fa fa-lock"></i> Confirm Password</label>
+                                            <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password" value="<%= typeof confirmPassword != 'undefined' ? confirmPassword : '' %>">
                                         </div>
                                         <div class="checkbox-forgotpass-area">
                                             <div class="checkbox-part">
-                                                <input type="checkbox" id="signupRemember3">
-                                                <label for="signupRemember3"> remember me</label>
+                                                <input type="checkbox" id="signupRemember2">
+                                                <label for="signupRemember2"> remember me</label>
                                             </div>
                                             <div class="forgotpass-part">
                                                 <a href="#">forgot password?</a>
                                             </div>
                                         </div>
                                         <div class="login-button margin-top-20">
-                                            <a href="#" class="template-button">login account</a>
+                                            <input type="submit" class="template-button" value="Register">
+                                            <!-- <a href="#" class="template-button">login account</a> -->
                                             <span>already have an account? <a href="/auth/login">login</a></span>
                                         </div>
                                     </form>

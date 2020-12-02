@@ -9,7 +9,7 @@ module.exports = {
         res.render("auth/login", {pagetitle});
     },
     loginPost: (req, res, next) => {
-        passport.authenticate("local", {
+        passport.authenticate("instructor", {
             successRedirect: "/instructor",
             failureRedirect: "/auth/login",
             failureFlash: true,

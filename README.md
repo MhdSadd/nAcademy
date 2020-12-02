@@ -25,3 +25,6 @@
 
 # collaboration
 
+# colors
+    - primary-colors rgb(241, 133, 51);
+    - other-colors #0c0c0cb1

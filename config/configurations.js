@@ -10,18 +10,12 @@ module.exports = {
 
     
         next();
+    }, 
+    ensureAuthenticated: (req, res, next) => {
+        if(req.isAuthenticated()) {
+            return next();
+        } else {
+            res.redirect("/auth/login");
+        }
     }
-    // app.use((req, res, next) => {
-    //     res.locals.success_msg = req.flash('success_msg');
-    //     res.locals.error_msg = req.flash('error_msg');
-    //     res.locals.error = req.flash('error');
-    //     res.locals.user = req.user;
-    //     // app.locals.fromNow = function(date){
-    //     //     return moment(date).fromNow();
-    //     //     }
-    //     // app.locals.moment = moment; 
-    //     // app.locals.shortDateFormat = shortDateFormat;
-    //     // res.locals.isAuthenticated = 
-    //     next();
-    // })
 }

@@ -5,27 +5,24 @@ const {AddCourse} = require("../../models/createCourse");
 
 module.exports = {
     index: async (req, res) => {
-        await Admin.findOne({}).then(async (admin) => {
-            const pagetitle = "Admin";
-            res.render("admin/index", {pagetitle});
-        })
+        const pagetitle = "Admin";
+        res.render("admin/index", {pagetitle})
     },
     profile: async (req, res) => {
-        await Admin.findOne({})
-        .then(async(admin) => {
-            const pagetitle = "Profile";
-            res.render("admin/profile", {pagetitle});
-        })
+        const pagetitle = "Profile";
+        const name = req.user.name;
+        const email = req.user.email;
+        res.render("admin/profile", {pagetitle, name, email});
     },
     all_instructors: (req, res) => {
         const instructors = Instructor.find({})
         instructors.exec((err, instructors)=>{
             if(err) throw err
             else{
-                console.log(instructors)
+                console.log(instructors);
+                let pagetitle = "Instructors";
+                res.render("admin/all-instructor", {pagetitle ,instructors});
             }
-            let pagetitle = "Instructors";
-            res.render("admin/all-instructor", {pagetitle ,instructors});
         })
     },
     delete_instructor: async (req,res)=>{
@@ -72,8 +69,50 @@ module.exports = {
             else{
                 console.log(courses)
             }
-            let pagetitle = 'All course'
+            let pagetitle = 'All courses'
             res.render('admin/all-course', {pagetitle, courses})
         })
-    }
+    },
+
+    // update page
+    delete_course: async(req, res) => {
+        const id = req.params.courseId;
+        await AddCourse.findByIdAndDelete(id)
+        .then(deleteCourse => {
+            res.redirect("/admin/all-courses")
+            return
+        })
+        .catch(err => console.log(err));
+    },
+
+    // update page 
+    update_courseGet: async(req, res) => {
+        const pagetitle = "Update Course";
+        const update = req.user.update;
+        res.render("admin/update-course", {pagetitle, update});
+    },
+
+    // finding course and render
+    update_coursePost: async(req, res) => {
+        const id = req.params.courseId;
+        await AddCourse.findById(id)
+        .then(update => {
+            // console.log(update);
+            const pagetitle = "Update Course";
+            res.render("admin/update-course", {pagetitle, update});
+        })
+    },
+
+    // update course
+    updateCourse: async(req, res, next)=>{
+        let updates = req.body 
+        console.log(req.body)
+        let _id = req.params.courseId
+        // console.log(_id)
+        await AddCourse.findOneAndUpdate({_id}, updates,)
+        .then(updatedCourse=>{
+            console.log("updated course:::", updatedCourse)
+        })
+        .catch(err=>{console.log(err)})
+    },
 }

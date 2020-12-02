@@ -3,13 +3,13 @@ const passport = require("passport");
 
 
 module.exports = {
-    loginGet: (req, res) => {
+    adminLoginGet: (req, res) => {
         const pageTitle = "Login";
         res.render("auth/login", {pageTitle});
     },
-    loginPost: (req, res, next) => {
-    passport.authenticate("local", {
-        successRedirect: "/admin/profile",
+    adminLoginPost: (req, res, next) => {
+    passport.authenticate("admin", {
+        successRedirect: "/admin",
         failureRedirect: "/auth/login",
         failureFlash: true,
     })(req, res, next);

@@ -21,7 +21,8 @@ const courseSchema = new Schema({
     type:String
   },
   promo: String,
-  description:String
+  description:String,
+  author: String
 
 })
 

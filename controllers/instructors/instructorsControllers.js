@@ -4,7 +4,8 @@ module.exports = {
     index: (req, res, next) => {
         const pagetitle = "User";
         const email = req.user.email;
-        res.render("instructor/index", {pagetitle, email});
+        const avatar = req.user.avatar;
+        res.render("instructor/index", {pagetitle, email, avatar});
         next();
     },
     profile: (req, res, next) => {
