@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const {Admin} = require("../../models/adminsModel");
 const {Instructor} = require("../../models/instructorsModel");
-const {AddCourse} = require("../../models/createCourse");
+const {Course} = require("../../models/createCourse");
 
 module.exports = {
     index: async (req, res) => {
@@ -63,7 +63,7 @@ module.exports = {
         res.render("admin/blank-page", {pagetitle});
     },
     allCourseGet: (req, res) => {
-        const courses = AddCourse.find({})
+        const courses = Course.find({})
         courses.exec((err, courses)=>{
             if(err) throw err
             else{
@@ -77,7 +77,7 @@ module.exports = {
     // update page
     delete_course: async(req, res) => {
         const id = req.params.courseId;
-        await AddCourse.findByIdAndDelete(id)
+        await Course.findByIdAndDelete(id)
         .then(deleteCourse => {
             res.redirect("/admin/all-courses")
             return
@@ -95,7 +95,7 @@ module.exports = {
     // finding course and render
     update_coursePost: async(req, res) => {
         const id = req.params.courseId;
-        await AddCourse.findById(id)
+        await Course.findById(id)
         .then(update => {
             // console.log(update);
             const pagetitle = "Update Course";
@@ -109,7 +109,7 @@ module.exports = {
         console.log(req.body)
         let _id = req.params.courseId
         // console.log(_id)
-        await AddCourse.findOneAndUpdate({_id}, updates,)
+        await Course.findOneAndUpdate({_id}, updates,)
         .then(updatedCourse=>{
             console.log("updated course:::", updatedCourse)
         })

@@ -1,10 +1,11 @@
-const {AddCourse} = require('../../models/createCourse');
-const cloudinary = require('../../config/cloudinary')
+const {Course} = require('../../models/createCourse');
+const {Student} = require("../../models/studentsModel");
+const cloudinary = require('../../config/cloudinary');
 
 
 
 module.exports = {
-  addCoursePost : async(req,res, next)=>{
+  CoursePost : async(req,res, next)=>{
     const {courseName, price, duration, instructor, promo, description} = req.body
     const courseImage = req.file
     let errors = [];
@@ -17,7 +18,7 @@ module.exports = {
       
       await cloudinary.v2.uploader.upload(req.file.path, async(err, result)=>{
         console.log('consoling result:::::::', result)
-        const newCourse = await new AddCourse({
+        const newCourse = await new Course({
           courseName,
           price,
           duration,
@@ -32,8 +33,8 @@ module.exports = {
     }
   
   },
-  courseGet: (req, res)=>{
-    // const courses = AddCourse.find({}).then((err, courses)=>{
+  allCourseGet: (req, res)=>{
+    // const courses = Course.find({}).then((err, courses)=>{
     //   if(err) throw err
     //   else{
     //     // console.log(courses)
@@ -41,43 +42,43 @@ module.exports = {
     //   let pageTitle = 'Package'
     //   res.render('default/packages', {pageTitle, courses})
     // })
-    const courses = AddCourse.find({})
+    const courses = Course.find({})
     courses.exec((err, courses)=>{
       if(err) throw err
       else{
         console.log(courses)
       }
       let pageTitle = 'Package'
-      res.render('default/packages', {pageTitle, courses})
+      res.render('defaultViews/packages', {pageTitle, courses})
     })
     
   },
-  // delete_course: async (req,res)=>{
-  //   const id = req.params.courseId;
-  //    await AddCourse.findByIdAndDelete(id)
-  //         .then(deleteCourse => {
-  //             console.log(deleteCourse);
-  //             res.redirect("/admin/all-courses")
-  //             return
-  //         })
-  //         .catch(err => console.log(err))
-  // },
-  // update_course: async(req, res)=>{
-  //   const id = req.params.courseId;
-  //   const courses =  await AddCourse.findById(id).then((err, courses)=>{
-  //     if(err) throw err
-  //     else{
-  //       console.log("look here::::::::::::::::::",courses)
-  //       let pageTitle = 'one'
-  //       res.render('/', {pageTitle, courses})
-  //     }
-  
-  //   })
-  //   .catch(err=>console.log(err))
-  // },
-  // courseUpdateForm: async(req, res, next)=>{
-  //   const id = req.params.courseId
-  //   const {courseName, courseImage,price,promo,description,instructor, duration} = req.body
-  //   await AddCourse.findByIdAndUpdate(id, (req.body))
-  // }
+  singleCourseGet: async(req,res)=>{
+    const id = req.params.courseId
+    // console.log('look::::::::::::::', id)
+    await Course.findById(id)
+    .then(single => {
+      const pageTitle = "single Package";
+      res.render('defaultViews/single-package', {pageTitle, single})
+    })
+    .catch(err=>console.log(err))
+  },
+
+  sign_upCourse: async(req, res, next)=>{
+    let _id = req.params.courseId
+    console.log(_id)
+    await Course.findById({_id})
+    .then(course=>{
+      let studentID = req.body
+      Student.findOne(studentID)
+      .then(student=>{
+        student.courses.push(course)
+        // console.log(student)
+        student.save()
+      })
+    })
+    .catch(err=>{console.log(err)})
+
+
+  }
 }
