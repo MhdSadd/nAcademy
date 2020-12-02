@@ -48,8 +48,8 @@ module.exports = {
       else{
         console.log(courses)
       }
-      let pageTitle = 'Package'
-      res.render('defaultViews/packages', {pageTitle, courses})
+      let pagetitle = 'Package'
+      res.render('defaultViews/package', {pagetitle, courses})
     })
     
   },
@@ -58,8 +58,8 @@ module.exports = {
     // console.log('look::::::::::::::', id)
     await Course.findById(id)
     .then(single => {
-      const pageTitle = "single Package";
-      res.render('defaultViews/single-package', {pageTitle, single})
+      const pagetitle = "single Package";
+      res.render('defaultViews/single-package', {pagetitle, single})
     })
     .catch(err=>console.log(err))
   },

@@ -59,10 +59,6 @@ module.exports = {
         const pagetitle = "Music";
         res.render("defaultViews/music", {pagetitle})
     },
-    package: (req, res) => {
-        const pagetitle = "Package";
-        res.render("defaultViews/package", {pagetitle})
-    },
     photography: (req, res) => {
         const pagetitle = "Photography";
         res.render("defaultViews/photography", {pagetitle})

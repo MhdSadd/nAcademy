@@ -60,7 +60,7 @@ router.get("/marketing", marketing);
 router.get("/music", music);
 
 // package routes
-router.get("/package", package);
+// router.get("/package", package);
 
 // photography routes
 router.get("/photography", photography);
