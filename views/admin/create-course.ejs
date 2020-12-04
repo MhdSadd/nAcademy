@@ -14,55 +14,56 @@
                 <div class="row">
                     <div class="col-lg-6 col-sm-6 col-xs-12">
                         <div class="white-box analytics-info">
-                            <h3 class="box-title">Edit Course</h3>
+                            <h3 class="box-title">Add Course</h3>
                             <%- include('../partials/messages') %>
-                            <form action="/admin/update/<%= update._id %>" enctype="multipart/form-data" method="POST">
+                            <form action="/courses/add-course" enctype="multipart/form-data" method="POST">
                                 <div class="row">
-                                    <div class="form-group col-sm-3">
+                                    <div class="form-group col-sm-6">
                                         <label for="exampleFormControlFile1">course image</label>
-                                        <input type="file" name="courseImage" class="form-control-file" id="exampleFormControlFile1" value="<%=update.courseImage %> ">
+                                        <input type="file" name="courseImage" multiple="multiple" class="form-control-file" id="exampleFormControlFile1">
                                     </div>
-                                    <img src="<%=update.courseImage %> " alt="" class="col-sm-3" height="60px">
                                     <div class="form-group col-sm-6">
                                         <label for="exampleInputEmail1">Percentage off</label>
-                                        <input type="text" name="promo" class="form-control" id="exampleInputProjectName" aria-describedby="emailHelp" placeholder="Enter percentage Off" value="<%=update.promo %> ">
+                                        <input type="text" name="promo" class="form-control" id="exampleInputProjectName" aria-describedby="emailHelp"
+                                            placeholder="Enter percentage Off">
                                     </div>
                                 </div>
                                 <!--  -->
                                 <div class="row">
                                     <div class="form-group col-sm-6">
                                         <label for="exampleInputEmail1">course name</label>
-                                        <input type="text" name="courseName" class="form-control" id="exampleInputProjectName" aria-describedby="emailHelp" placeholder="Enter course name" value="<%=update.courseName %> ">
+                                        <input type="text" name="courseName" class="form-control" id="exampleInputProjectName" aria-describedby="emailHelp"
+                                            placeholder="Enter course name">
                                     </div>
- 
+
                                     <!--  -->
                                     <div class="form-group col-sm-6">
-                                        <label for="exampleInputEmail1">course duration</label>
-                                        <input type="text" name="duration" class="form-control" id="exampleInputProjectName" aria-describedby="emailHelp"
-                                            placeholder="Enter course duration" value="<%=update.duration  %> ">
+                                    <label for="exampleInputEmail1">course duration</label>
+                                    <input type="text" name="duration" class="form-control" id="exampleInputProjectName" aria-describedby="emailHelp"
+                                        placeholder="Enter course duration">
                                     </div>
                                 </div>
- 
+
                                 <div class="row">
                                     <div class="form-group col-sm-6">
                                         <label for="exampleInputEmail1">Price</label>
                                         <input type="number" name="price" class="form-control" id="exampleInputProjectName" aria-describedby="emailHelp"
-                                            placeholder="Enter course price" value="<%=update.price %> ">
+                                            placeholder="Enter course price">
                                     </div>
- 
+
                                     <!--  -->
                                     <div class="form-group col-sm-6">
-                                        <label for="exampleInputEmail1">instructor</label>
-                                        <input type="text" name="instructor" class="form-control" id="exampleInputProjectName" aria-describedby="emailHelp"
-                                            placeholder="Enter course instructor" value="<%=update.instructor %> ">
+                                    <label for="exampleInputEmail1">instructor</label>
+                                    <input type="text" name="instructor" class="form-control" id="exampleInputProjectName" aria-describedby="emailHelp"
+                                        placeholder="Enter course instructor">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">course description</label>
                                     <input type="text" name="description" class="form-control" id="exampleInputProjectName" aria-describedby="emailHelp"
-                                            placeholder="Enter course description" value="<%=update.description  %> ">
-                                </div>
-                                <button type="submit" class="btn btn-success">Update Course</button>
+                                        placeholder="Enter course description">
+                                    </div>
+                                <button type="submit" class="btn btn-success">Add Course</button>
                             </form>
                         </div>
                     </div>

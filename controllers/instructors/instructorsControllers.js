@@ -1,4 +1,4 @@
-const { Instructor } = require("../../models/instructorsModel");
+const { Instructor } = require("../../models/instructor/instructor");
 
 module.exports = {
     index: (req, res, next) => {
@@ -25,18 +25,6 @@ module.exports = {
         res.render("instructor/basic-table", {pagetitle, email});
         next();
     }, 
-    maps: (req, res, next) => {
-        const pagetitle = "Map";
-        const email = req.email;
-        res.render("instructor/map", {pagetitle, email});
-        next();
-    },
-    icons: (req, res, next) => {
-        const pagetitle = "Icons";
-        const email = req.email;
-        res.render("instructor/icons", {pagetitle, email});
-        next();
-    },
     blank_page: (req, res, next) => {
         const pagetitle = "Blank Page";
         const email = req.email;

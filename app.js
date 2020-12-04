@@ -3,44 +3,55 @@ dotenv.config();
 
 
 const express = require("express");
+const cookieParser = require('cookie-parser')
+const methodOverride = require("method-override");
 const app = express();
 const path = require("path");
 const logger = require("morgan");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const session = require("express-session");
+const MongoStore = require('connect-mongo')(session);
 const flash = require("connect-flash");
 const passport = require("passport");
 require("./config/passport")(passport);
 const {globalVariable} = require("./config/configurations");
-require("./misc/database");
-const methodOverride = require("method-override");
+const mongoose = require("mongoose");
+const MONGO_URI = require('./config/dev').MONGO_URI
 
 
-// configuring morgan
-app.use(logger("dev"));
+// connect DB
+   // DATABASE CONNECTION
+   mongoose.connect(MONGO_URI, {
+    useCreateIndex: true,
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false
+})
+.then((res) => {
+    console.log(`Database Connected at MongoURI...`)
+})
+.catch((err) => {
+    console.log(`Database connection failed ${err}`)
+})
 
-// body parser middleware
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+// morgan init
+app.use(logger('dev'))
+app.use(cookieParser())
+app.use(methodOverride('_method'))
+
+
+// Connecting to static files
 app.use(express.static(path.join(__dirname,'public')));
+
+// setting up template engine
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
 
 //Configure Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
-// NOTE: when using req.body, you must fully parse the request body
-//       before you call methodOverride() in your middleware stack,
-//       otherwise req.body will not be populated.
-app.use(methodOverride('_method'))
-app.use(methodOverride(function (req, res) {
-    if (req.body && typeof req.body === 'object' && '_method' in req.body) {
-      // look in urlencoded POST bodies and delete it
-        var method = req.body._method
-        delete req.body._method
-        return method
-    }
-}))
 
 
 // SET UP EXPRESS_SESSION MIDDLEWARE
@@ -49,7 +60,11 @@ app.use(
         secret: `${process.env.NODE_SESSION}`,
         resave: true,
         saveUninitialized: true,
-        cookie: { secure: false, maxAge: Date.now() + 3600000}
+        cookie: { secure: false, maxAge: Date.now() + 3600000},
+        store: new MongoStore({
+            mongooseConnection: mongoose.connection,
+            ttl: 14 * 24 * 60 * 60 // = 14 days. Default
+            })
     })
 );
 
@@ -63,17 +78,14 @@ app.use(flash());
 // Global variables
 app.use(globalVariable) 
 
-// setting up template engine
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
 
 
 // routing
-const defaultRoutes = require("./routes/default/defaultRoutes");
-const auth = require("./routes/auth/authRoutes");
+const defaultRoutes = require("./routes/default/default");
+const auth = require("./routes/auth/auth");
 const coursesRoutes = require("./routes/courses/course");
-const admin = require("./routes/admin/adminRoutes");
-const instructors = require("./routes/instructors/instructorsRoutes");
+const admin = require("./routes/admin/admin");
+const instructors = require("./routes/instructors/instructor");
 const { ensureAuthenticated } = require("./config/auth");
 
 // routes
@@ -92,5 +104,5 @@ app.use(( req, res, next) => {
 
 
 app.listen(process.env.PORT, process.env.HOSTNAME, () => {
-    console.log(`Server on http://${process.env.HOSTNAME}:${process.env.PORT}`)
+    console.log(`Server on http://localhost:${process.env.PORT}`)
 });

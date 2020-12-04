@@ -3454,7 +3454,17 @@ img {
   .single-package-item .package-offer {
     position: absolute;
     top: 20px;
-    right: 10px; }
+    right: 10px; 
+  }
+  .package-offer-price {
+    position: absolute;
+    top: 20px;
+    /* right: 10px;  */
+  }
+  .orange-bg{
+    background-color: orange;
+    padding: .3rem;
+  }
     .single-package-item .package-offer span {
       color: #ffffff;
       display: inline-block;
@@ -3465,7 +3475,7 @@ img {
     .single-package-item .package-offer.yellow-bg span {
       background-color: #edba0a; }
     .single-package-item .package-offer.blue-bg span {
-      background-color: #7347f2; }
+      background-color: red; }
   .single-package-item .package-content {
     padding: 40px 20px; }
   .single-package-item .package-icon {

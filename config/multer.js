@@ -32,8 +32,8 @@ function checkFileType(file, cb) {
   if (mimetype && extname) {
       return cb(null, true);
   } else {
-      // req.flash('error','Invalid File')
-      // return res.redirect('back')
+      req.flash('error','Invalid File')
+      return res.redirect('back')
       cb('ERROR: kindly please upload a valid filetype');
   }
 }

@@ -1,15 +1,16 @@
 const localStrategy = require("passport-local").Strategy;
 const mongooose = require("mongoose");
 const bcrypt = require("bcryptjs");
-const {Instructor} = require("../models/instructorsModel");
-const {Admin} = require("../models/adminsModel");
+const { Instructor } = require("../models/instructor/instructor");
+const { Admin } = require("../models/admin/admin");
 
 module.exports = function (passport) {
-  passport.use("instructor",
+  passport.use(
+    "instructor",
     new localStrategy(
       {
         usernameField: "email",
-        passwordField: "password"
+        passwordField: "password",
       },
       (email, password, done) => {
         // MATCH  INSTRUCTOR
@@ -36,36 +37,38 @@ module.exports = function (passport) {
     )
   );
 
-  passport.use("admin", 
-  new localStrategy(
-    {
-      usernameField: "email",
-      passwordField: "password"
-    },
-    (email, password, done) => {
-      // match admin
+  passport.use(
+    "admin",
+    new localStrategy(
+      {
+        usernameField: "email",
+        passwordField: "password",
+      },
+      (email, password, done) => {
+        // match admin
 
-      Admin.findOne({email: email})
-      .then((admin) => {
-        if(!admin) {
-          return done(null, false, {
-            message: "This admin does not exist",
-          });
-        }
+        Admin.findOne({ email: email })
+          .then((admin) => {
+            if (!admin) {
+              return done(null, false, {
+                message: "This admin does not exist",
+              });
+            }
 
-        // matching password
-        bcrypt.compare(password, admin.password, (err, isMatch) => {
-          if (err) throw err;
-          if (isMatch) {
-            return done(null, admin);
-          } else {
-            return done(null, false, { message: "Password Incorrect" });
-          }
-        });
-      })
-      .catch((err) => console.log(err));
-    }
-  ))
+            // matching password
+            bcrypt.compare(password, admin.password, (err, isMatch) => {
+              if (err) throw err;
+              if (isMatch) {
+                return done(null, admin);
+              } else {
+                return done(null, false, { message: "Password Incorrect" });
+              }
+            });
+          })
+          .catch((err) => console.log(err));
+      }
+    )
+  );
 
   // SERIALIZE AND DESERIALIZE  INSTRUCTOR
   passport.serializeUser((instructor, done) => {
@@ -75,17 +78,10 @@ module.exports = function (passport) {
   passport.deserializeUser((id, done) => {
     Admin.findById(id, (err, admin) => {
       if (err) return done(err);
-      if(admin) return done(null, admin);
+      if (admin) return done(null, admin);
       Instructor.findById(id, (err, instructor) => {
         done(err, instructor);
-      })
-    })
-  })
-
-  // deserializer
-  // passport.deserializeUser((id, done) => {
-  //   Instructor.findById(id, (err, instructor) => {
-  //     done(err, instructor);
-  //   });
-  // });
+      });
+    });
+  });
 };

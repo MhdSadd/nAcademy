@@ -1,7 +1,7 @@
 const mongoose  = require('mongoose')
 const bcrypt = require("bcryptjs");
 const randomString = require('randomstring')
-const {Student} = require('../../models/studentsModel');
+const {Student} = require('../../models/students/student');
 
 module.exports = {
   studentRegisterGet: (req, res) => {
@@ -10,7 +10,7 @@ module.exports = {
   },
   studentRegisterPost : (req, res, err) => {
     const { name, email, password, confirmPassword } = req.body;
-    console.log(req.body)
+    // console.log(req.body)
     let errors = [];
   
     // CHECKING REQUIRED FIELD
@@ -24,19 +24,19 @@ module.exports = {
     }
   
     //CHECKING PASSWORD LENGHT
-    if (password.length < 6) {
+    if (password.length < 4) {
       errors.push({ msg: "Password must be atleast 6 Characters" });
     }
   
     if (errors.length > 0) {
-      let pageTitle = "Register"
+      let pagetitle = "Register"
       res.render("auth/register", {
         errors,
         name,
         email,
         password,
         confirmPassword,
-        pageTitle
+        pagetitle
       });
     } else {
       //  VALIDATION PASS
@@ -44,19 +44,19 @@ module.exports = {
         if (user) {
           //  USER EXIST
           errors.push({ msg: "Email is already registered" });
-          let pageTitle = "Register"
+          let pagetitle = "Register"
           res.render("auth/register", {
             errors,
             name,
             email,
             password,
             confirmPassword,
-            pageTitle
+            pagetitle
           });
         } else {
             const studentID = `nAcad-${ randomString.generate({
-                length: 6,
-                charset: 'numeric'
+                length: 5,
+                charset: 'alphanumeric'
             })}`
           // CREATING A NEW USER INSTANCE
           const newStudent = new Student({
@@ -82,7 +82,7 @@ module.exports = {
                     "success_msg",
                     "Registration succesfull"
                   );
-                  res.redirect("/");
+                  res.redirect("/default/package");
                 })
                 .catch((err) => console.log(err));
             })

@@ -1,4 +1,4 @@
-// const Instructor = require("../models/instructorsModel");
+// const Instructor = require("../models/instructor/instructor");
 module.exports = {
     ensureAuthenticated: (req, res, next) => {
         if(req.isAuthenticated()) {

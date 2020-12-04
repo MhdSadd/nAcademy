@@ -10,7 +10,7 @@
 						<div class="row">
 								<div class="col-sm-12">
 										<div class="white-box">
-												<h3 class="box-title">All Applied Instructors</h3>
+												<h3 class="box-title">All Approved Instructors</h3>
 												<div class="table-responsive">
 														<table class="table">
 																<thead>
@@ -23,22 +23,13 @@
 																		</tr>
 																</thead>
 																<tbody>
-																		<%instructors.forEach(instructor => {%>
+																		<%approved.forEach(approved => {%>
 																					<tr>
-																				<td><%= instructor.name %> </td>
-																				<td><%= instructor.email %> </td>
-																				<td><%= instructor.instructorSkills %> </td>
-																				<td><%= instructor.workExperience %> </td>
-																				<td><%= instructor.instructorApproved %> </td>
-																				<td>
-																						<div class="dropdown">
-																								<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action</button>
-																								<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-																										<a href="/admin/deleteInstructor/<%= instructor._id %>" class="dropdown-item">Delete</a>
-																										<a href="/admin/approveInstructor/<%= instructor._id %>" class="dropdown-item">Approve</a>
-																								</div>
-																						</div>
-																				</td>
+																				<td><%= approved.name %> </td>
+																				<td><%= approved.email %> </td>
+																				<td><%= approved.instructorSkills %> </td>
+																				<td><%= approved.workExperience %> </td>
+																				<td><%= approved.instructorApproved %> </td>
 																		</tr>
 																		<% })%>
 																		

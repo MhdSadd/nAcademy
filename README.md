@@ -1,7 +1,9 @@
 # Project / About
+
         This is the nAcademy site
 
 # Folder structure
+
     - client
     - Config
     - Controllers
@@ -19,12 +21,13 @@
     - views
         - admin
         - auth
-        - defaultViews
+        - default
         - partials
         - users
 
 # collaboration
 
 # colors
+
     - primary-colors rgb(241, 133, 51);
     - other-colors #0c0c0cb1
