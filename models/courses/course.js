@@ -20,9 +20,19 @@ const courseSchema = new Schema({
   instructor:{
     type:String
   },
+  category:{
+    type: String,
+    required:true
+  },
+  dateCreated:{
+    type:Date,
+    default:Date.now(),
+  },
   promo: String,
   description:String,
-  author: String
+  author: String,
+
+
 
 })
 

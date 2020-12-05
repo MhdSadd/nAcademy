@@ -12,36 +12,63 @@
                 <!-- ============================================================== -->
                 <!-- .row -->
                 <div class="row">
-                    <div class="col-lg-6 col-sm-6 col-xs-12">
+                    <div class="col-lg-12 col-sm-12 col-xs-12">
                         <div class="white-box analytics-info">
                             <h3 class="box-title">Add Course</h3>
                             <%- include('../partials/messages') %>
                             <form action="/courses/add-course" enctype="multipart/form-data" method="POST">
                                 <div class="row">
-                                    <div class="form-group col-sm-6">
+                                    <div class="form-group col-sm-3">
                                         <label for="exampleFormControlFile1">course image</label>
                                         <input type="file" name="courseImage" multiple="multiple" class="form-control-file" id="exampleFormControlFile1">
                                     </div>
-                                    <div class="form-group col-sm-6">
+                                    <div class="form-group col-sm-3">
                                         <label for="exampleInputEmail1">Percentage off</label>
                                         <input type="text" name="promo" class="form-control" id="exampleInputProjectName" aria-describedby="emailHelp"
                                             placeholder="Enter percentage Off">
                                     </div>
+                                    <div class="form-group col-sm-3">
+                                        <label for="exampleInputEmail1">Author</label>
+                                        <input type="text" name="author" class="form-control" id="exampleInputProjectName" aria-describedby="emailHelp"
+                                           value="<%= author %> ">
+                                    </div>
+                                    <div class="form-group col-sm-3">
+                                        <label for="exampleInputEmail1">Category</label>
+                                        <input type="text" name="category" class="form-control" id="exampleInputProjectName" aria-describedby="emailHelp"
+                                            placeholder="Enter course type">
+                                    </div>
                                 </div>
                                 <!--  -->
                                 <div class="row">
-                                    <div class="form-group col-sm-6">
-                                        <label for="exampleInputEmail1">course name</label>
-                                        <input type="text" name="courseName" class="form-control" id="exampleInputProjectName" aria-describedby="emailHelp"
-                                            placeholder="Enter course name">
-                                    </div>
-
-                                    <!--  -->
-                                    <div class="form-group col-sm-6">
-                                    <label for="exampleInputEmail1">course duration</label>
-                                    <input type="text" name="duration" class="form-control" id="exampleInputProjectName" aria-describedby="emailHelp"
-                                        placeholder="Enter course duration">
-                                    </div>
+                                    <div class="row col-md-6">
+                                        <div class="form-group col-sm-6">
+                                            <label for="exampleInputEmail1">course name</label>
+                                            <input type="text" name="courseName" class="form-control" id="exampleInputProjectName" aria-describedby="emailHelp"
+                                                placeholder="Enter course name">
+                                        </div>
+    
+                                        <!--  -->
+                                        <div class="form-group col-sm-6">
+                                        <label for="exampleInputEmail1">course duration</label>
+                                        <input type="text" name="duration" class="form-control" id="exampleInputProjectName" aria-describedby="emailHelp"
+                                            placeholder="Enter course duration">
+                                        </div>
+                                    </div> 
+                                    <!-- second row -->
+                                    <div class="row col-md-6">
+                                        <div class="form-group col-sm-6">
+                                            <label for="exampleInputEmail1">course name</label>
+                                            <input type="text" name="courseName" class="form-control" id="exampleInputProjectName" aria-describedby="emailHelp"
+                                                placeholder="Enter course name">
+                                        </div>
+    
+                                        <!--  -->
+                                        <div class="form-group col-sm-6">
+                                        <label for="exampleInputEmail1">course duration</label>
+                                        <input type="text" name="duration" class="form-control" id="exampleInputProjectName" aria-describedby="emailHelp"
+                                            placeholder="Enter course duration">
+                                        </div>
+                                    </div> 
                                 </div>
 
                                 <div class="row">

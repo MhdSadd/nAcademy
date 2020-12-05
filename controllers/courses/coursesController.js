@@ -10,13 +10,14 @@ module.exports = {
       duration,
       instructor,
       promo,
+      author,
+      category,
       description,
     } = req.body;
     const courseImage = req.file;
     let errors = [];
-    // console.log("file::::::::::", req.file);
-    // console.log("body::::::::::", req.body);
-    if (!courseImage || !courseName || !price || !duration) {
+    // console.log("body consoling::::::::::",req.body, req.file);
+    if (!courseImage || !courseName || !price || !duration || !category) {
       errors.push({ msg: "All field required" });
     } else {
       await cloudinary.v2.uploader.upload(
@@ -29,11 +30,14 @@ module.exports = {
             duration,
             instructor,
             promo,
+            category,
             description,
+            author,
             courseImage: await result.secure_url,
           });
+          console.log(newCourse)
           newCourse.save();
-          res.redirect("/admin");
+          res.redirect("/admin/all-courses");
         }
       );
     }

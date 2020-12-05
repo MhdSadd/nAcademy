@@ -14,7 +14,8 @@ module.exports = {
     const name = req.user.name;
     const email = req.user.email;
     const avatar = req.user.avatar
-    res.render("admin/create-course", { pagetitle, name, email, avatar });
+    const author = req.user.name
+    res.render("admin/create-course", { pagetitle, name, email, avatar, author });
   },
 
   // admin profile get
@@ -85,7 +86,7 @@ module.exports = {
     courses.exec((err, courses) => {
       if (err) throw err;
       else {
-        console.log(courses);
+        // console.log(courses);
       }
       let pagetitle = "All courses";
       const name = req.user.name;
